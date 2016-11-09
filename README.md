@@ -40,5 +40,10 @@ ext {
 }
 ```
 
+import `config.gradle` to you lib's `build.gradle`
+```java
+apply from: 'https://raw.githubusercontent.com/huhuang03/up-bintray-lib-config/master/config.gradle'
+```
+
 ### set common info once
-replace ``the `config.build` file
+replace common info in `config.gradle` file
