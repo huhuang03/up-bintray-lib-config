@@ -1,0 +1,125 @@
+apply plugin: 'com.github.dcendents.android-maven'
+
+// replace me in your own info
+ext {
+    licensesName = "The Apache Soft License, Version 2.0"
+    licensesUrl = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+    developerName = "Tonghu"
+    developerEmail = "huhuang03@gmail.com"
+    developerSite = "http://github.com/huhuang03"
+}
+
+group = project.ext.group
+version = project.ext.version
+
+if (!ext.desc) {
+    ext.desc = ext.developerName
+}
+
+if (!ext.url) {
+    ext.url = ext.developerSite
+}
+
+archivesBaseName = ext.module
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                groupId project.ext.group
+                artifactId project.ext.module
+
+                // Add your description here
+                name project.ext.module
+                description project.ext.desc
+                url project.ext.url
+
+                // Set your license
+                licenses {
+                    license {
+                        name project.ext.licensesName
+                        url project.ext.licensesUrl
+                    }
+                }
+                developers {
+                    developer {
+                        id project.ext.developerName
+                        name project.ext.developerName
+                        email project.ext.developerEmail
+                    }
+                }
+
+                scm {
+                    connection project.ext.developerSite
+                    developerConnection project.ext.developerSite
+                    url project.ext.developerSite
+                }
+            }
+        }
+    }
+}
+
+
+apply plugin: 'com.jfrog.bintray'
+
+ext.bintrayDesc = project.ext.desc
+
+if (project.hasProperty("android")) { // Android libraries
+    task sourcesJar(type: Jar) {
+        classifier = 'sources'
+        from android.sourceSets.main.java.srcDirs
+    }
+
+    task javadoc(type: Javadoc) {
+        source = android.sourceSets.main.java.srcDirs
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    }
+} else { // Java libraries
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+// Bintray
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    configurations = ['archives']
+
+    pkg {
+        repo = "maven"
+        licenses = ['Apache-2.0']
+    }
+}
+// }}}
+
+// put key bintray.user, bintray.apikey in local.properties
+
+bintray {
+    pkg {
+        name = project.ext.module
+        desc = project.ext.desc
+        vcsUrl = project.ext.url
+
+        version {
+            name = project.ext.version
+            desc = project.ext.desc
+            released = new Date()
+        }
+    }
+}
