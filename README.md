@@ -45,5 +45,7 @@ import `config.gradle` to you lib's `build.gradle`
 apply from: 'https://raw.githubusercontent.com/huhuang03/up-bintray-lib-config/master/config.gradle'
 ```
 
-### set common info once
-replace common info in `config.gradle` file
+replace common info in `config.gradle` file, you just need do this once
+
+## Demo
+look 'demo.gradle'

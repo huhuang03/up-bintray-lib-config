@@ -1,0 +1,39 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.1"
+
+    defaultConfig {
+        minSdkVersion 11
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+}
+
+ext {
+    group = "com.tonghu.view"
+    module = "badgeContainer"
+    version = "1.0.2"
+    desc = "An android badge view"    // option
+    url = "https://github.com/huhuang03/BadgeContainer"  // option
+}
+
+
+apply from: 'https://raw.githubusercontent.com/huhuang03/up-bintray-lib-config/master/config.gradle'
