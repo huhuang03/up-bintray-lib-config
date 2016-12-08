@@ -16,6 +16,12 @@ svcUrl: source version control url
 ```
 
 ## Usage
+add this in your top `build.gradle`, in `buildscript{ dependencies {} }` closure
+```gradle
+classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
+````
+
 add plugin `android-maven, bintray`, add below lines at top of you lib's build.gralde, blow `apply plugin: 'com.android.library'`
 ```java
 apply plugin: 'com.github.dcendents.android-maven'
@@ -44,7 +50,7 @@ replace common info in `config.gradle` file, you just need do this once
 
 import `config.gradle` to you lib's `build.gradle`, you should use your config
 ```java
-apply from: 'file_location_of_your_modified_config.gradle'
+apply from: 'https://raw.githubusercontent.com/huhuang03/up-bintray-lib-config/master/config.gradle'
 ```
 
 

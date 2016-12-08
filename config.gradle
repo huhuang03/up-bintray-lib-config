@@ -16,8 +16,8 @@ if (!ext.desc) {
     ext.desc = ext.developerName
 }
 
-if (!ext.url) {
-    ext.url = ext.developerSite
+if (!ext.svcUrl) {
+    ext.svcUrl = ext.developerSite
 }
 
 archivesBaseName = ext.module
@@ -34,7 +34,7 @@ install {
                 // Add your description here
                 name project.ext.module
                 description project.ext.desc
-                url project.ext.url
+                url project.ext.svcUrl
 
                 // Set your license
                 licenses {
@@ -114,7 +114,7 @@ bintray {
     pkg {
         name = project.ext.module
         desc = project.ext.desc
-        vcsUrl = project.ext.url
+        vcsUrl = project.ext.svcUrl
 
         version {
             name = project.ext.version
