@@ -50,7 +50,7 @@ replace common info in `config.gradle` file, you just need do this once
 
 import `config.gradle` to you lib's `build.gradle`, you should use your config
 ```java
-apply from: 'https://raw.githubusercontent.com/huhuang03/up-bintray-lib-config/master/config.gradle'
+apply form: file_location_of_your_modified_config.gradle
 ```
 
 
