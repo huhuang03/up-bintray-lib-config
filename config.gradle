@@ -12,11 +12,11 @@ ext {
 group = project.ext.group
 version = project.ext.version
 
-if (!ext.desc) {
+if (!ext.has("desc")) {
     ext.desc = ext.developerName
 }
 
-if (!ext.svcUrl) {
+if (!ext.has("svcUrl")) {
     ext.svcUrl = ext.developerSite
 }
 
