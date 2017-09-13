@@ -16,6 +16,13 @@ svcUrl: source version control url
 ```
 
 ## Usage
+set user apikey in local.property
+
+```
+bintray.apikey=apikey on bintray
+bintray.user=user in bintray
+```
+
 add this in your top `build.gradle`, in `buildscript{ dependencies {} }` closure
 ```gradle
 classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
